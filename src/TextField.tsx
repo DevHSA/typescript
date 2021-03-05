@@ -40,16 +40,20 @@ const TextField: React.FC<Props> = ({ handleChange }) => {
     ];
 
     interface obj {
-        id: number;
+      id: number;
     }
 
-    interface objArr extends Array<obj>{ };
+    interface Acc {
+      array: [obj,obj];
+    }
 
-    interface bigArr extends Array<objArr>{ };
+    interface big {
+      array: Acc[];
+    }
 
-        
+  
 
-    let reducedArr = arr.reduce((accumulator: any[], currEle, index) => {
+    let reducedArr = arr.reduce((accumulator: Acc[], currEle, index) => {
       return (
         (index % 2 === 0
           ? accumulator.push([currEle])
@@ -57,9 +61,35 @@ const TextField: React.FC<Props> = ({ handleChange }) => {
       );
     }, []);
 
-    console.log("reduced arr", reducedArr);
+    reducedArr.map((item) => {
+      // return (
+      //   <>
+      //     <div></div>
 
-  },  []);
+      //     <div></div>
+      //   </>
+      // );
+      // console.log("TextField", typeof item);
+
+      // for (let ele of item) {
+      //   console.log("elements", ele);
+      // }
+
+      // item.map;
+
+       return item.map((ele:  obj) => {
+
+          console.log(ele);
+
+      })
+      // return item.map(ite: any[] =>{
+
+      //   return console.log(ite);
+      // })
+    });
+
+    console.log("reduced arr", reducedArr);
+  }, []);
 
   return (
     <div ref={divRef}>
